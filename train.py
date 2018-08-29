@@ -49,6 +49,7 @@ def data():
 		
 ep=open('epochs.txt','r')
 epo=int(ep.read())
+ep=10
 ep.close()
 
 model=Sequential()
@@ -61,11 +62,11 @@ model.compile(optimizer=sgd,loss='categorical_crossentropy',metrics=['accuracy']
 
 model.load_weights('my_model_weights.h5')
 train_generator=data()
-model.fit_generator(generator=train_generator,steps_per_epoch=len(features_dict),epochs=4)
+model.fit_generator(generator=train_generator,steps_per_epoch=len(features_dict),epochs=ep)
 model.save_weights('my_model_weights.h5')
 
 ep=open('epochs.txt','w')
-ep.write(str(epo+1))
+ep.write(str(epo+ep))
 ep.close()
 			
 			
